@@ -40,6 +40,8 @@ public class SwiftConnectycubeFlutterCallKitPlugin: NSObject, FlutterPlugin {
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         print("[SwiftConnectycubeFlutterCallKitPlugin][register]")
+        
+         
         //setup method channels
         let methodChannel = FlutterMethodChannel(name: _methodChannelName, binaryMessenger: registrar.messenger())
         

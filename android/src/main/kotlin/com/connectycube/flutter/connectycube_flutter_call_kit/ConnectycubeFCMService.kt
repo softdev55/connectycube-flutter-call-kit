@@ -2,6 +2,7 @@ package com.connectycube.flutter.connectycube_flutter_call_kit
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.connectycube.flutter.connectycube_flutter_call_kit.utils.ContextHolder
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -15,17 +16,21 @@ class ConnectycubeFCMService : FirebaseMessagingService() {
         ContextHolder.applicationContext = applicationContext
 
         val data = remoteMessage.data
+        Log.i("letsCube>> ok",data.toString())
         if (data.containsKey("signal_type")) {
             when (data["signal_type"]) {
                 "startCall" -> {
+                    Log.i("letsCube>> 1",data.toString())
                     processInviteCallEvent(applicationContext, data)
                 }
 
                 "endCall" -> {
+                    Log.i("letsCube>> 2",data.toString())
                     processEndCallEvent(applicationContext, data)
                 }
 
                 "rejectCall" -> {
+                    Log.i("letsCube>> 3",data.toString())
                     processEndCallEvent(applicationContext, data)
                 }
             }

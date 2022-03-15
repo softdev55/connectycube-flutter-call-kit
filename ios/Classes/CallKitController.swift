@@ -99,6 +99,7 @@ class CallKitController : NSObject {
     ) {
         print("[CallKitController][reportIncomingCall] call data: \(uuid), \(callType), \(callInitiatorId), \(callInitiatorName), \(opponents), \(userInfo ?? ""), ")
         let update = CXCallUpdate()
+        
         update.localizedCallerName = callInitiatorName
         update.remoteHandle = CXHandle(type: .generic, value: uuid)
         update.hasVideo = callType == 1
@@ -106,6 +107,10 @@ class CallKitController : NSObject {
         update.supportsUngrouping = false
         update.supportsHolding = false
         update.supportsDTMF = false
+        
+        
+       
+        
         
         provider.reportNewIncomingCall(with: UUID(uuidString: uuid)!, update: update) { error in
             completion?(error)
