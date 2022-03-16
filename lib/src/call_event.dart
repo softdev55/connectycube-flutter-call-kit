@@ -13,7 +13,7 @@ class CallEvent {
     required this.callType,
     required this.callerId,
     required this.callerName,
-    required this.opponentsIds,
+    // required this.opponentsIds,
     this.userInfo,
   });
 
@@ -21,7 +21,7 @@ class CallEvent {
   final int callType;
   final int callerId;
   final String callerName;
-  final Set<int> opponentsIds;
+  // final Set<int> opponentsIds;
 
   /// Used for exchanging additional data between the Call notification and your app,
   /// you will get this data in event callbacks (e.g. onCallAcceptedWhenTerminated,
@@ -42,7 +42,7 @@ class CallEvent {
       callType: callType ?? this.callType,
       callerId: callerId ?? this.callerId,
       callerName: callerName ?? this.callerName,
-      opponentsIds: opponentsIds ?? this.opponentsIds,
+      // opponentsIds: opponentsIds ?? this.opponentsIds,
       userInfo: userInfo ?? this.userInfo,
     );
   }
@@ -53,7 +53,7 @@ class CallEvent {
       'call_type': callType,
       'caller_id': callerId,
       'caller_name': callerName,
-      'call_opponents': opponentsIds.join(','),
+      // 'call_opponents': opponentsIds.join(','),
       'user_info': jsonEncode(userInfo ?? <String, String>{}),
     };
   }
@@ -65,8 +65,7 @@ class CallEvent {
       callType: map['call_type'] as int,
       callerId: map['caller_id'] as int,
       callerName: map['caller_name'] as String,
-      opponentsIds:
-          (map['call_opponents'] as String).split(',').map(int.parse).toSet(),
+      // opponentsIds: (map['call_opponents'] as String).split(',').map(int.parse).toSet(),
       // userInfo: map['user_info'] != null
       //     ? Map<String, String>.from(jsonDecode(map['user_info']))
       //     : null,
@@ -89,7 +88,7 @@ class CallEvent {
         'callType: $callType, '
         'callerId: $callerId, '
         'callerName: $callerName, '
-        'opponentsIds: $opponentsIds, '
+        // 'opponentsIds: $opponentsIds, '
         'userInfo: $userInfo)';
   }
 
@@ -102,7 +101,7 @@ class CallEvent {
         other.callType == callType &&
         other.callerId == callerId &&
         other.callerName == callerName &&
-        setEquals(other.opponentsIds, opponentsIds) &&
+        // setEquals(other.opponentsIds, opponentsIds) &&
         mapEquals(other.userInfo, userInfo);
   }
 
@@ -112,7 +111,7 @@ class CallEvent {
         callType.hashCode ^
         callerId.hashCode ^
         callerName.hashCode ^
-        opponentsIds.hashCode ^
+        // opponentsIds.hashCode ^
         userInfo.hashCode;
   }
 }
